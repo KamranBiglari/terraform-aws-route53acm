@@ -9,7 +9,7 @@ variable "endpoint" {
 }
 
 variable "record" {
-  type        = map(any)
+  type        = any
   description = "Endpoint record"
   default     = null
 }
