@@ -9,8 +9,9 @@ variable "endpoint" {
 }
 
 variable "record" {
-  type        = any
+  type        = map(any)
   description = "Endpoint record"
+  default     = null
 }
 
 variable "tags" {
