@@ -1,5 +1,5 @@
 data "aws_route53_zone" "this" {
-  name         = "{var.domain}."
+  name         = "${var.domain}."
   private_zone = false
 }
 
@@ -29,7 +29,7 @@ resource "aws_route53_record" "this" {
 
 # ROUTE 53 TO CREATE CNAME RECORD IN ROUTE 53 FOR END-POINT 
 resource "aws_route53_record" "endpoint" {
-  count   = var.record ? 1 : 0
+  count   = can(var.record) ? 1 : 0
   zone_id = data.aws_route53_zone.this.zone_id
   name    = "${var.endpoint}.${var.domain}"
   type    = var.record.type
