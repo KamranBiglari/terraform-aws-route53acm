@@ -5,9 +5,9 @@ data "aws_route53_zone" "this" {
 
 # DEFINE AN ACM 
 resource "aws_acm_certificate" "this" {
-  domain_name               = "${var.endpoint}.${var.domain}"
-  validation_method         = "DNS"
-  tags = var.tags
+  domain_name       = "${var.endpoint}.${var.domain}"
+  validation_method = "DNS"
+  tags              = var.tags
 }
 
 # DEFINE A ROUTE 53 FOR DNS VALIDATION OF THE ACM 
@@ -29,7 +29,7 @@ resource "aws_route53_record" "this" {
 
 # ROUTE 53 TO CREATE CNAME RECORD IN ROUTE 53 FOR OTF END-POINT 
 resource "aws_route53_record" "endpoint" {
-  count  = var.record ? 1 : 0
+  count   = var.record ? 1 : 0
   zone_id = data.aws_route53_zone.this.zone_id
   name    = "${var.endpoint}.${var.domain}"
   type    = var.record.type

@@ -1,16 +1,16 @@
 variable "domain" {
-    type = string
-    description = "Domain name"
+  type        = string
+  description = "Domain name"
 }
 
 variable "endpoint" {
-    type = string
-    description = "Prefix of endpoint name"
+  type        = string
+  description = "Prefix of endpoint name"
 }
 
 variable "record" {
-    type = any
-    description = "Endpoint record"
+  type        = any
+  description = "Endpoint record"
 }
 
 variable "tags" {

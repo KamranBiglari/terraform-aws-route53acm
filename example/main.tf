@@ -1,4 +1,4 @@
-module "cloudwatch-monitor" {
+module "route53acm" {
   source  = "../"
   domain = "yourdomain.com"
   endpoint = "apigateway.dev"

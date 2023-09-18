@@ -8,20 +8,60 @@ A Terraform module to create an A Record in AWS Route53 and validate ACM
 module "route53acm" {
   source  = "KamranBiglari/route53acm/aws"
   version = "~> 1.0"
-  input = "${path.module}/cloudwatch.yaml"
-  alarm_name_prefix = "cloudwatch-monitor"
-  current_environment = "dev"
-  template_data = {
-    
+  domain = "yourdomain.com"
+  endpoint = "apigateway.dev"
+  record = {
+    type = "CNAME"
+    ttl = 60
+    records = ["d-1234567890.execute-api.us-east-1.amazonaws.com"]
   }
-  alarm_actions = {
-    default = {
-      alarm = ""
-      ok = ""
-    }
+  tags = {
+      Name = "apigateway.dev"
+      Environment = "dev"
+      Team = "devops"
   }
 }
 ```
 
 ## Examples
 - https://github.com/KamranBiglari/terraform-aws-route53acm/tree/main/example
+<!-- BEGIN_TF_DOCS -->
+## Requirements
+
+| Name | Version |
+|------|---------|
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0.11 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 4.8.0 |
+
+## Providers
+
+| Name | Version |
+|------|---------|
+| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 4.8.0 |
+
+## Modules
+
+No modules.
+
+## Resources
+
+| Name | Type |
+|------|------|
+| [aws_acm_certificate.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/acm_certificate) | resource |
+| [aws_route53_record.endpoint](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_record) | resource |
+| [aws_route53_record.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_record) | resource |
+| [aws_route53_zone.this](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/route53_zone) | data source |
+
+## Inputs
+
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_domain"></a> [domain](#input\_domain) | Domain name | `string` | n/a | yes |
+| <a name="input_endpoint"></a> [endpoint](#input\_endpoint) | Prefix of endpoint name | `string` | n/a | yes |
+| <a name="input_record"></a> [record](#input\_record) | Endpoint record | `any` | n/a | yes |
+| <a name="input_tags"></a> [tags](#input\_tags) | A mapping of tags to assign. | `map(string)` | `{}` | no |
+
+## Outputs
+
+No outputs.
+<!-- END_TF_DOCS -->
