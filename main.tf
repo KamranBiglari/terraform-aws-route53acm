@@ -13,7 +13,7 @@ resource "aws_acm_certificate" "this" {
 # DEFINE A ROUTE 53 FOR DNS VALIDATION OF THE ACM 
 resource "aws_route53_record" "this" {
   for_each = {
-    for dvo in aws_acm_certificate.otf.domain_validation_options : dvo.domain_name => {
+    for dvo in aws_acm_certificate.this.domain_validation_options : dvo.domain_name => {
       name   = dvo.resource_record_name
       record = dvo.resource_record_value
       type   = dvo.resource_record_type
@@ -27,7 +27,7 @@ resource "aws_route53_record" "this" {
   records         = [each.value.record]
 }
 
-# ROUTE 53 TO CREATE CNAME RECORD IN ROUTE 53 FOR OTF END-POINT 
+# ROUTE 53 TO CREATE CNAME RECORD IN ROUTE 53 FOR END-POINT 
 resource "aws_route53_record" "endpoint" {
   count   = var.record ? 1 : 0
   zone_id = data.aws_route53_zone.this.zone_id
