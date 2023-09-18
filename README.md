@@ -58,10 +58,12 @@ No modules.
 |------|-------------|------|---------|:--------:|
 | <a name="input_domain"></a> [domain](#input\_domain) | Domain name | `string` | n/a | yes |
 | <a name="input_endpoint"></a> [endpoint](#input\_endpoint) | Prefix of endpoint name | `string` | n/a | yes |
-| <a name="input_record"></a> [record](#input\_record) | Endpoint record | `any` | n/a | yes |
+| <a name="input_record"></a> [record](#input\_record) | Endpoint record | `map(any)` | `null` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | A mapping of tags to assign. | `map(string)` | `{}` | no |
 
 ## Outputs
 
-No outputs.
+| Name | Description |
+|------|-------------|
+| <a name="output_fqdn"></a> [fqdn](#output\_fqdn) | n/a |
 <!-- END_TF_DOCS -->
