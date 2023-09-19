@@ -7,7 +7,7 @@ output "endpoint" {
 }
 
 output "fqdn" {
-  value = aws_route53_record.endpoint[0].fqdn
+  value = aws_route53_record.endpoint.fqdn
 }
 
 output "certificate_arn" {

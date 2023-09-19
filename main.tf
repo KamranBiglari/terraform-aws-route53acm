@@ -29,7 +29,6 @@ resource "aws_route53_record" "this" {
 
 # ROUTE 53 TO CREATE CNAME RECORD IN ROUTE 53 FOR END-POINT 
 resource "aws_route53_record" "endpoint" {
-  count   = can(var.record) ? 1 : 0
   zone_id = data.aws_route53_zone.this.zone_id
   name    = "${var.endpoint}.${var.domain}"
   type    = var.record.type
